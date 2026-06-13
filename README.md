@@ -5,6 +5,37 @@
 
 > Audit RF spectrum captures against the PUBLIC FCC band plan. Flag federal/DoD/GPS-band transmissions.
 
+## Usage — step by step
+
+`sigsurvey-rf` uses the shared `cognis_mil` CLI: a positional target plus
+standard output/scoring flags.
+
+1. **Install** (editable from a clone, or from the wheel):
+   ```bash
+   pip install -e .
+   # provides the `sigsurvey-rf` console script
+   ```
+2. **Run the primary scan** against a path or target (defaults to `.`):
+   ```bash
+   sigsurvey-rf .
+   ```
+3. **Emit machine-readable output** — `console|json|markdown|sarif|oscal`:
+   ```bash
+   sigsurvey-rf ./target --format json --out sigsurvey-report.json
+   ```
+4. **Read / use the output.** The JSON report holds the findings and a
+   severity-weighted `composite_score`; `sarif` integrates with code-scanning
+   and `oscal` emits an OSCAL skeleton. Stamp an operator banner with
+   `--classification` (placeholder only — not interpreted by the tool):
+   ```bash
+   sigsurvey-rf ./target --classification "UNCLASSIFIED//FOR PUBLIC RELEASE" --format markdown
+   ```
+5. **Gate CI on severity** with `--fail-on` (`very_high|high|moderate|low|none`);
+   the exit code is non-zero when a finding at/above the threshold is present:
+   ```bash
+   sigsurvey-rf ./target --format sarif --out sigsurvey.sarif --fail-on high
+   ```
+
 ## Upstream
 
 Forks / wraps **https://github.com/gnuradio/gnuradio**. See [`UPSTREAM.md`](./UPSTREAM.md) for the
