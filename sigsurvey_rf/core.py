@@ -5,7 +5,7 @@ plan data only (FCC Online Table of Frequency Allocations, NTIA "Red Book"
 public version). Nothing classified, nothing ITAR.
 """
 from __future__ import annotations
-import csv, json
+import csv
 from pathlib import Path
 from cognis_mil import ScanResult, Finding, Severity
 
