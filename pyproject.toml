@@ -23,3 +23,6 @@ sigsurvey-rf = "sigsurvey_rf.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["sigsurvey_rf", "cognis_mil"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
