@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cognis-sigsurvey-rf"
-version = "0.1.0"
+version = "0.1.1"
 description = "RF spectrum survey, NTIA/FCC-aware band-plan validator"
 license = { text = "LicenseRef-COCL-1.0" }
 requires-python = ">=3.10"
@@ -14,9 +14,11 @@ keywords = ["military","ic","dod","cognis-digital","sigsurvey-rf"]
 dependencies = []
 
 [project.optional-dependencies]
+connect = ["cognis-connect @ git+https://github.com/cognis-digital/cognis-connect.git"]
 dev = ["pytest>=8.0", "pytest-cov"]
 
 [project.scripts]
+"sigsurvey-rf-emit" = "sigsurvey_rf.connect:emit_main"
 sigsurvey-rf = "sigsurvey_rf.cli:main"
 
 [tool.hatch.build.targets.wheel]
