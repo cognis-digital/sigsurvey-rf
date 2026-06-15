@@ -67,7 +67,9 @@ class ScanResult:
 
     def finalize(self):
         if not self.findings:
-            self.composite_score = 0.0; self.risk_level = "Very Low"; return self
+            self.composite_score = 0.0
+            self.risk_level = "Very Low"
+            return self
         score = sum(f.weight for f in self.findings) * 1.5
         self.composite_score = min(100.0, score)
         s = self.composite_score
