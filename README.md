@@ -5,6 +5,70 @@
 
 > Audit RF spectrum captures against the PUBLIC FCC band plan. Flag federal/DoD/GPS-band transmissions.
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ sigsurvey-rf-emit --version
+sigsurvey-rf 0.1.0
+```
+
+```console
+$ sigsurvey-rf-emit --help
+usage: sigsurvey-rf [-h] [--format {console,json,markdown,sarif,oscal}]
+                    [--out OUT] [--fail-on {very_high,high,moderate,low,none}]
+                    [--classification CLASSIFICATION] [-v]
+                    [target]
+
+sigsurvey-rf — Cognis Digital · Military/IC ecosystem
+
+positional arguments:
+  target                Path/target
+
+options:
+  -h, --help            show this help message and exit
+  --format {console,json,markdown,sarif,oscal}
+  --out OUT             Write output to file
+  --fail-on {very_high,high,moderate,low,none}
+  --classification CLASSIFICATION
+                        Operator-supplied banner. PLACEHOLDER. Tool does not
+                        interpret.
+  -v, --version         show program's version number and exit
+```
+
+> Blocks above are real `sigsurvey-rf` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"incident_id": "1234567890",
+"reporter": "John Doe",
+"report_time": "2023-02-15T14:30:00Z",
+"findings": [
+  {
+    "id": "1",
+    "title": "Suspicious Network Traffic",
+    "description": "Unusual network traffic detected from IP address 192.0.2.1",
+    "confidence": 70,
+    "severity": "medium"
+  },
+  {
+    "id": "2",
+    "title": "Malware Detection",
+    "description": "Malware detected on system with ID 'abc123'",
+    "confidence": 90,
+    "severity": "high"
+  }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `sigsurvey-rf` uses the shared `cognis_mil` CLI: a positional target plus
